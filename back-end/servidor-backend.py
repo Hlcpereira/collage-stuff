@@ -1,5 +1,5 @@
 from config import *
-from modelo import Pessoa
+from entities.tecnico import Tecnico
 
 @app.route("/")
 def inicio():
@@ -11,19 +11,20 @@ def listar(classe):
         classe = getattr(sys.modules[__name__], classe)
         lista = db.session.query(classe).all()
         json = [ x.json() for x in lista ]
-        pessoas = jsonify(json)
-        pessoas.headers.add("Access-Control-Allow-Origin", "*")
-        return pessoas
+        dados = jsonify(json)
+        dados.headers.add("Access-Control-Allow-Origin", "*")
+        return dados
     except:
-        return "Something bad happened"
+        return "Bad request", status.HTTP_400_BAD_REQUEST
 
-@app.route("/incluir/Pessoa", methods=['post'])
-def incluir_pessoa():
+@app.route("/incluir/<string:classe>", methods=['post'])
+def incluir(classe):
     try:
+        classe = getattr(sys.modules[__name__], classe)
         resposta = jsonify({"resultado": "ok", "detalhes": "ok"})
         dados = request.get_json()
         try:
-            nova = Pessoa(**dados)
+            nova = classe(**dados)
             db.session.add(nova)
             db.session.commit()
         except Exception as e:
@@ -32,6 +33,6 @@ def incluir_pessoa():
         resposta.headers.add("Access-Control-Allow-Origin", "*")
         return resposta 
     except:
-        return "Something bad happened"
+        return "Bad request", status.HTTP_400_BAD_REQUEST
 
 app.run(debug=True)
