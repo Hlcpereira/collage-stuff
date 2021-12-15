@@ -1,11 +1,13 @@
 from config import *
+from entities.cpu import Cpu
 
-class Ram(db.Model):
+class Hdd(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     ssd = db.Column(db.Boolean)
     capac = db.Column(db.String(50))
     velocidade = db.Column(db.String(50))
-    cpu_id = db.Column(Integer, ForeignKey('cpu.id'))
+    cpu_id = db.Column(db.Integer, db.ForeignKey('cpu.id'))
+    cpu = db.relationship("Cpu")
 
     def __init__(self, ssd, capac, velocidade, cpu_id):
         self.ssd = ssd
@@ -13,11 +15,12 @@ class Ram(db.Model):
         self.velocidade = velocidade
         self.cpu_id = cpu_id
 
-    __tablename__ == "cpu"
+    __table_args__ = {'extend_existing': True}
 
     def __str__(self):
         return str(self.id)+") "+ self.ssd + ", " +\
-            self.capac + ", " self.velocidade  + ", " self.cpu_id
+            self.capac + ", " + self.velocidade  +\
+            ", " + self.cpu_id
 
     def json(self):
         return {
@@ -25,5 +28,6 @@ class Ram(db.Model):
             "ssd": self.ssd,
             "capac": self.capac,
             "velocidade": self.velocidade,
-            "cpu_id": self.cpu_id
+            "cpu_id": self.cpu_id,
+            "cpu": self.cpu.json()
         }

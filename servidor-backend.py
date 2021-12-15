@@ -22,6 +22,7 @@ def listar(classe):
 @app.route("/incluir/<string:classe>", methods=['post'])
 def incluir(classe):
     try:
+        db.create_all()
         classe = getattr(sys.modules[__name__], classe)
         resposta = jsonify({"resultado": "ok", "detalhes": "ok"})
         dados = request.get_json()
