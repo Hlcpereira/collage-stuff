@@ -1,5 +1,13 @@
 from config import *
+from entities.assistant import Assistant
+from entities.celular import Celular
+from entities.eletronico import Eletronico
+from entities.geladeira import Geladeira
+from entities.manutencao import Manutencao
+from entities.op_sys import Op_Sys
+from entities.roteador import Roteador
 from entities.tecnico import Tecnico
+from entities.televisao import Televisao
 
 @app.route("/")
 def inicio():
