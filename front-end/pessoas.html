@@ -8,7 +8,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
         integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-    <title>Cadastro de pessoas</title>
+    <title>Sistema de Manutenção</title>
 </head>
 
 <body>
@@ -18,12 +18,21 @@
 
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <div class="navbar-nav mr-auto">
-                    <span class="navbar-text">Cadastro de Pessoas</span>
+                    <span class="navbar-text">Sistema de Manutenção</span>
                     <a class="nav-item nav-link" href="#" id="linkInicio">Início
                         <span class="sr-only">(current)</span></a>
-                    <a class="nav-item nav-link" href="#" id="linkListarPessoas">Listar</a>
+                    <a class="nav-item nav-link" href="#" id="linkListarTecnicos">Listar Tecnicos</a>
                     <a class="nav-item nav-link" data-toggle="modal" 
-                        data-target="#modalIncluirPessoa" href="#">Incluir</a>
+                        data-target="#modalIncluirTecnico" href="#">Cadastrar Tecnico</a>
+                    <a class="nav-item nav-link" href="#" id="linkListarManutencoes">Listar Manutenções</a>
+                    <a class="nav-item nav-link" data-toggle="modal" 
+                        data-target="#modalIncluirManutencao" href="#">Cadastrar Manutenção</a>
+                    <a class="nav-item nav-link" href="#" id="linkListarEletronicos">Listar Eletrônicos</a>
+                    <a class="nav-item nav-link" data-toggle="modal" 
+                        data-target="#modalIncluirEletronico" href="#">Cadastrar Eletrônico</a>
+                    <a class="nav-item nav-link" href="#" id="linkListarOpSys">Listar Sistemas Operacionais</a>
+                    <a class="nav-item nav-link" data-toggle="modal" 
+                        data-target="#modalIncluirOpSys" href="#">Cadastrar Sistema Operacional</a>
                 </div>
             </div>
 
@@ -37,16 +46,16 @@
         <div id="corpoDaPagina">
 
             <div id="conteudoInicial" class="invisible">
-                Bem vindo ao cadastro de pessoas.
+                Bem vindo ao sistema de manutenção.
             </div>
 
-            <!-- janela modal de inclusão de pessoa -->
-            <div class="modal fade" id="modalIncluirPessoa" tabindex="-1" role="dialog"
+            <!-- janela modal de inclusão de tecnico -->
+            <div class="modal fade" id="modalIncluirTecnico" tabindex="-1" role="dialog"
                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Incluir pessoa</h5>
+                            <h5 class="modal-title" id="exampleModalLabel">Incluir teccnicos</h5>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -78,14 +87,14 @@
 
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button id="btIncluirPessoa" type="button" class="btn btn-primary">Incluir</button>
+                            <button id="btIncluirTecnico" type="button" class="btn btn-primary">Incluir</button>
                         </div>
                     </div>
                 </div>
             </div>
 
-            <!-- tabela de listagem de pessoas -->
-            <table class="table invisible table-striped table-hover" id="tabelaPessoas">
+            <!-- tabela de listagem de tecnicos -->
+            <table class="table invisible table-striped table-hover" id="tabelaTecnicos">
                 <thead>
                     <!-- primeira linha da tabela: títulos -->
                     <tr>
@@ -94,8 +103,70 @@
                         <th scope="col">Telefone</th>
                     </tr>
                 </thead>
-                <tbody id="corpoTabelaPessoas">
-                    <!-- aqui serão exibidas as pessoas -->
+                <tbody id="corpoTabelaTecnicos">
+                    <!-- aqui serão exibidas as tecnicos -->
+                </tbody>
+            </table>
+
+            <!-- janela modal de inclusão de manutenção -->
+            <div class="modal fade" id="modalIncluirManutencao" tabindex="-1" role="dialog"
+                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Incluir Manutenções</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form>
+                                <div class="form-group">
+                                    <label for="campoIdOpSys">Nome</label>
+                                    <input type="text" class="form-control" id="campoIdOpSys"
+                                        aria-describedby="opSysHelp" placeholder="Id do Sistema Operacional">
+                                    <small id="opSysHelp" class="form-text text-muted">Informe o Id do Sistema Operacional.</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="campoIdEletronico">Eletrônico</label>
+                                    <input type="text" class="form-control" id="campoIdEletronico"
+                                        aria-describedby="eletronicoHelp" placeholder="Id do Eletrônico">
+                                    <small id="eletronicoHelp" class="form-text text-muted">Informe o Id do Eletrônico.</small>
+                                </div>
+                                <div class="form-group">
+                                    <label for="campoIdTecnico">Tecnico</label>
+                                    <input type="text" class="form-control" id="campoIdTecnico"
+                                        aria-describedby="tecnicoHelp" placeholder="Id do Tecnico">
+                                    <small id="tecnicoHelp" class="form-text text-muted">Informe o Id do técnico.</small>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button id="btIncluirManutencao" type="button" class="btn btn-primary">Incluir</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- tabela de listagem de manutenções -->
+            <table class="table invisible table-striped table-hover" id="tabelaManutencoes">
+                <thead>
+                    <!-- primeira linha da tabela: títulos -->
+                    <tr>
+                        <th scope="col">Tipo do Sistema Operacional</th>
+                        <th scope="col">Versão do Sistema Operacional</th>
+                        <th scope="col">Fornecedor do Sistema Operacional</th>
+                        <th scope="col">Marca do Eletrônico</th>
+                        <th scope="col">Voltagen do Eletrônico</th>
+                        <th scope="col">Nome do Tecnico</th>
+                        <th scope="col">Telefone do Tecnico</th>
+                        <th scope="col">Email do Tecnico</th>
+                    </tr>
+                </thead>
+                <tbody id="corpoTabelaManutencoes">
+                    <!-- aqui serão exibidas as manutenções -->
                 </tbody>
             </table>
 

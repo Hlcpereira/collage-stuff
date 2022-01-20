@@ -1,8 +1,11 @@
 from config import *
+from entities.op_sys import Op_Sys
+from entities.eletronico import Eletronico
+from entities.tecnico import Tecnico
 
-class Manutencao:
+class Manutencao(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    op_sys_id = db.Column(db.Integer, db.ForeignKey('op_sys.id'))
+    op_sys_id = db.Column(db.Integer, db.ForeignKey('op__sys.id'))
     op_sys = db.relationship("Op_Sys")
     eletronico_id = db.Column(db.Integer, db.ForeignKey('eletronico.id'))
     eletronico = db.relationship("Eletronico")

@@ -1,6 +1,6 @@
 from config import *
 
-class Op_Sys:
+class Op_Sys(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.String(254))
     versao = db.Column(db.String(254))

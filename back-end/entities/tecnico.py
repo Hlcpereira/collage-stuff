@@ -17,7 +17,6 @@ class Tecnico(db.Model):
             "email": self.email,
             "telefone": self.telefone
         }
-
    
 if __name__ == "__main__":
     if os.path.exists(arquivobd):
