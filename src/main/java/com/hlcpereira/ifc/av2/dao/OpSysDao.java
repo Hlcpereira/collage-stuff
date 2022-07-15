@@ -4,10 +4,12 @@
  */
 package com.hlcpereira.ifc.av2.dao;
 
+import com.hlcpereira.ifc.av2.model.Eletronico;
 import com.hlcpereira.ifc.av2.model.OpSys;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,6 +17,15 @@ import jakarta.persistence.Persistence;
  */
 public class OpSysDao {
     private OpSys opSys;
+    private ArrayList<OpSys> op_systems = new ArrayList();
+
+    public ArrayList<OpSys> retornarOpSystems() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("meuPU");
+        EntityManager em = emf.createEntityManager();
+        op_systems = (ArrayList<OpSys>) em.createQuery("from OpSys", OpSys.class)
+            .getResultList();
+        return op_systems;
+    }
 
     public OpSys buscarOpSys(Long id) {
         try {

@@ -43,7 +43,7 @@ public class TecnicoController extends HttpServlet {
             ArrayList<Tecnico> registros = tdao.retornarTecnicos();
             System.out.println(registros);
             request.setAttribute("registros", registros);
-            getServletContext().getRequestDispatcher("/listar.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/listar_tecnicos.jsp").forward(request, response);
         } else if (op.equals("cadastrar")) {
             getServletContext().getRequestDispatcher("/form_create_tecnico.jsp").forward(request, response);
         }

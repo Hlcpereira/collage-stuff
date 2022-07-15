@@ -17,7 +17,7 @@
     <body>
         <h1>Cadastrar tecnico</h1>
 
-        <form action="PessoaController?op=post" method="post">
+        <form action="TecnicoController?op=post" method="post">
             Nome: <input type="text" name="nome"> <br>
             CPF: <input type="text" name="cpf"> <br>
             Email: <input type="text" name="email"> <br>

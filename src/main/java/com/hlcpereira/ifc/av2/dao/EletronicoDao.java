@@ -5,9 +5,11 @@
 package com.hlcpereira.ifc.av2.dao;
 
 import com.hlcpereira.ifc.av2.model.Eletronico;
+import com.hlcpereira.ifc.av2.model.Tecnico;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.EntityManagerFactory;
 import jakarta.persistence.Persistence;
+import java.util.ArrayList;
 
 /**
  *
@@ -15,6 +17,15 @@ import jakarta.persistence.Persistence;
  */
 public class EletronicoDao {
     private Eletronico eletronico;
+    private ArrayList<Eletronico> eletronicos = new ArrayList();
+
+    public ArrayList<Eletronico> retornarEletronicos() {
+        EntityManagerFactory emf = Persistence.createEntityManagerFactory("meuPU");
+        EntityManager em = emf.createEntityManager();
+        eletronicos = (ArrayList<Eletronico>) em.createQuery("from Eletronico", Eletronico.class)
+            .getResultList();
+        return eletronicos;
+    }
 
     public Eletronico buscarEletronico(Long id) {
         try {

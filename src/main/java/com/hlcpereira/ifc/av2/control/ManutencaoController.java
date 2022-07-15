@@ -29,6 +29,10 @@ import java.util.ArrayList;
 public class ManutencaoController extends HttpServlet {
 
     ManutencaoDao mdao = new ManutencaoDao();
+    
+    EletronicoDao edao = new EletronicoDao();
+    OpSysDao osdao = new OpSysDao();
+    TecnicoDao tdao = new TecnicoDao();
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
@@ -47,9 +51,15 @@ public class ManutencaoController extends HttpServlet {
             ArrayList<Manutencao> registros = mdao.retornarManutencoes();
             System.out.println(registros);
             request.setAttribute("registros", registros);
-            getServletContext().getRequestDispatcher("/listar.jsp").forward(request, response);
+            getServletContext().getRequestDispatcher("/listar_manutencoes.jsp").forward(request, response);
         } else if (op.equals("cadastrar")) {
-            getServletContext().getRequestDispatcher("/form_create_pessoa.jsp").forward(request, response);
+            ArrayList<Eletronico> eletronicos = edao.retornarEletronicos();
+            ArrayList<OpSys> op_systems = osdao.retornarOpSystems();
+            ArrayList<Tecnico> tecnicos = tdao.retornarTecnicos();
+            request.setAttribute("eletronicos", eletronicos);
+            request.setAttribute("op_systems", op_systems);
+            request.setAttribute("tecnicos", tecnicos);
+            getServletContext().getRequestDispatcher("/form_create_manutencao.jsp").forward(request, response);
         }
     }
 
@@ -67,10 +77,6 @@ public class ManutencaoController extends HttpServlet {
         request.setCharacterEncoding("utf8");
 
         String op = request.getParameter("op");
-        
-        EletronicoDao edao = new EletronicoDao();
-        OpSysDao osdao = new OpSysDao();
-        TecnicoDao tdao = new TecnicoDao();
 
         Eletronico eletronico = edao.buscarEletronico(Long.parseLong(request.getParameter("eletronico")));
         OpSys opSys = osdao.buscarOpSys(Long.parseLong(request.getParameter("op_sys")));
