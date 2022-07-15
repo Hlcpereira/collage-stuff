@@ -24,10 +24,7 @@
 
         <%= i.getId() %>, <%= i.getNome() %>, 
         <%= i.getEmail() %>, <%= i.getPeso() %> 
-        
-        <a href="PessoaController?op=d&q=<%= i.getId() %>">remover</a> | 
-        <a href="PessoaController?op=r&q=<%= i.getId() %>">exibir</a> | 
-        <a href="PessoaController?op=a&q=<%= i.getId() %>">atualizar</a> <br>
+        <br>
 
         <%
             }

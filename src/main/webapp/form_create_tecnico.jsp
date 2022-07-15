@@ -6,7 +6,6 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"
         import="java.util.*"
-        import="ifc.edu.br.mv9hib2.model.Tecnico"
         %>
 <!DOCTYPE html>
 <html>

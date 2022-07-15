@@ -86,6 +86,7 @@ public class TecnicoController extends HttpServlet {
             Tecnico tecnico = new Tecnico();
             tecnico.setNome(nome);
             tecnico.setEmail(email);
+            tecnico.setCpf(cpf);
             tecnico.setTelefone(telefone);
             if (tdao.incluirTecnico(tecnico)) {
                 request.setAttribute("msg", "Pessoa cadastrada com sucesso");

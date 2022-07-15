@@ -5,8 +5,8 @@
 --%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"
-        import="ifc.edu.br.mv9hib2.model.Pessoa"
-        import="ifc.edu.br.mv9hib2.model.Nacionalidade"
+        import="com.hlcpereira.ifc.av2.model.Tecnico"
+        import="com.hlcpereira.ifc.av2.model.Nacionalidade"
         %>
 <!DOCTYPE html>
 <html>

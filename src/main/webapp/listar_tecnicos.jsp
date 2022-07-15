@@ -6,7 +6,7 @@
 
 <%@page contentType="text/html" pageEncoding="UTF-8"
         import="java.util.*"
-        import="ifc.edu.br.mv9hib2.model.Pessoa" %>
+        import="com.hlcpereira.ifc.av2.model.Tecnico" %>
 <!DOCTYPE html>
 <html>
     <head>
@@ -16,18 +16,15 @@
     <body>
         <h1>Listagem de pessoas</h1>
         <%
-        ArrayList<Pessoa> registros = (ArrayList<Pessoa>) request.getAttribute("registros");
+        ArrayList<Tecnico> registros = (ArrayList<Tecnico>) request.getAttribute("registros");
                  
-        for (Pessoa i : registros) {
+        for (Tecnico i : registros) {
         
         %>
 
         <%= i.getId() %>, <%= i.getNome() %>, 
-        <%= i.getEmail() %>, <%= i.getPeso() %> 
-        
-        <a href="PessoaController?op=d&q=<%= i.getId() %>">remover</a> | 
-        <a href="PessoaController?op=r&q=<%= i.getId() %>">exibir</a> | 
-        <a href="PessoaController?op=a&q=<%= i.getId() %>">atualizar</a> <br>
+        <%= i.getEmail() %>, <%= i.getCpf() %>
+        <br>
 
         <%
             }
